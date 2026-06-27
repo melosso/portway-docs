@@ -1,0 +1,70 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - name: Checkout portway-docs
+      uses: actions/checkout@v4
+      with:
+        path: portway-docs
+        fetch-depth: 0
+
+    - name: Checkout Bark
+      uses: actions/checkout@v4
+      with:
+        repository: melosso/bark
+        path: bark
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Build Bark
+      run: |
+        dotnet publish ${{ github.workspace }}/bark/Bark/src/Bark/Bark.csproj \
+          -c Release -o ${{ github.workspace }}/publish
+
+    - name: Prepare docs for export
+      run: |
+        ln -s ${{ github.workspace }}/portway-docs/docs ${{ github.workspace }}/publish/docs
+        ln -s ${{ github.workspace }}/portway-docs/wwwroot ${{ github.workspace }}/publish/wwwroot
+
+    - name: Generate static site
+      working-directory: ${{ github.workspace }}/publish
+      run: |
+        ./Bark --export ${{ github.workspace }}/site \
+          --base-url https://hawkinslabdev.github.io \
+          --base-path /portway-docs
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '${{ github.workspace }}/site'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
