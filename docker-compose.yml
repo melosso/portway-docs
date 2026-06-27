@@ -1,0 +1,9 @@
+services:
+  bark:
+    image: ghcr.io/melosso/bark:latest
+    container_name: bark
+    ports:
+      - "5991:8080"
+    volumes:
+      - ./docs:/app/docs
+      - ./wwwroot:/app/wwwroot
