@@ -48,7 +48,9 @@ jobs:
 
     - name: Copy docs and wwwroot
       run: |
+        rm -rf ${{ github.workspace }}/publish/docs
         cp -r ${{ github.workspace }}/portway-docs/docs ${{ github.workspace }}/publish/docs
+        rm -rf ${{ github.workspace }}/publish/wwwroot
         cp -r ${{ github.workspace }}/portway-docs/wwwroot ${{ github.workspace }}/publish/wwwroot
 
     - name: Generate static site
