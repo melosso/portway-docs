@@ -10,9 +10,7 @@
     "pattern": "https://github.com/melosso/portway/edit/main/docs/:path",
     "text": "Edit this page on GitHub"
   },
-  "head": [
-    { "tag": "link", "attrs": { "rel": "icon", "href": "/favicon.ico" } }
-  ],
+  "head": [],
   "topNav": [
     { "text": "Home", "link": "/" },
     { "text": "Guide", "link": "/guide/" },

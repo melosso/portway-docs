@@ -33,22 +33,22 @@ features:
 <span class="platforms-title">Available For</span>
 
 <div class="platforms-list">
-  <a href="/guide/getting-started" class="platform-logo">
-    <img src="/icons/platforms/microsoft-windows.svg" alt="Windows" loading="lazy">
+  <a href="guide/getting-started" class="platform-logo">
+    <img src="icons/platforms/microsoft-windows.svg" alt="Windows" loading="lazy">
   </a>
-  <a href="/guide/deployment" class="platform-logo">
-    <img src="/icons/platforms/linux.svg" alt="Linux" loading="lazy">
+  <a href="guide/deployment" class="platform-logo">
+    <img src="icons/platforms/linux.svg" alt="Linux" loading="lazy">
   </a>
-  <a href="/guide/docker-compose" class="platform-logo">
-    <img src="/icons/platforms/docker.svg" alt="Docker" loading="lazy">
+  <a href="guide/docker-compose" class="platform-logo">
+    <img src="icons/platforms/docker.svg" alt="Docker" loading="lazy">
   </a>
-  <a href="/guide/deployment" class="platform-logo">
-    <img src="/icons/platforms/podman.svg" alt="Podman" loading="lazy">
+  <a href="guide/deployment" class="platform-logo">
+    <img src="icons/platforms/podman.svg" alt="Podman" loading="lazy">
   </a>
 </div>
 
 <div class="more-button-wrapper">
-  <a class="more-button" href="/guide/deployment">All deployment options →</a>
+  <a class="more-button" href="guide/deployment">All deployment options →</a>
 </div>
 
 </div>
